@@ -63,7 +63,8 @@ namespace Entidades
             foreach (EIngredientes i in ingredientes)
             {
                 double porcentajeAgregado = 1 + ((double)i / 100);
-                precio *= porcentajeAgregado;
+
+                precio += (porcentajeAgregado + (double)tipo);
             }
             return precio;
         }

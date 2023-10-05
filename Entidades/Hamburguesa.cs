@@ -61,8 +61,9 @@ namespace Entidades
             if (esDoble) { precio += 500 ; }
             foreach(EIngredientes i in ingredientes)
             {
-                double porcentajeAgregado = 1 + ((double)i / 100) ;
-                precio *= porcentajeAgregado;
+                double porcentajeAgregado = ((double)i / 100) ;
+                double costoAgregado = costoBase * porcentajeAgregado;
+                precio += (costoAgregado);
             }
             return precio;
 
