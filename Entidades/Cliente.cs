@@ -57,6 +57,10 @@ namespace Entidades
 
         public static bool operator ==(Cliente cliente, Comida comida)
         {
+            if(cliente is null)
+            {
+                cliente = (Cliente)12345678;
+            }
             return cliente.menu.Contains(comida);
         }
         public static bool operator !=(Cliente cliente, Comida comida)
@@ -76,12 +80,16 @@ namespace Entidades
         public static string ImprimirTicket(Cliente cliente)
         {
             StringBuilder sb = new StringBuilder();
+            if(cliente is null)
+            {
+                cliente = new Cliente(12345678);
+            }
             sb.AppendLine(cliente.dni.ToString());
             foreach(Comida comida in cliente.menu)
             {
                 sb.AppendLine(comida.Descripcion);
             }
-            sb.AppendLine(cliente.TotalAPagar.ToString());
+            sb.AppendLine($"Total a Pagar: ${cliente.TotalAPagar.ToString()}");
             return sb.ToString();
         }
 

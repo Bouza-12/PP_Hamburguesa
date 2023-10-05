@@ -12,19 +12,22 @@ namespace Entidades
 
         private ETipo tipo;
 
-        public Guarnicion(ETipo tipo) : base(tipo.ToString()) { }
+        public Guarnicion(ETipo tipo) : base(tipo.ToString()) 
+        {
+            this.tipo = tipo;
+        }
         public Guarnicion():this(ETipo.PAPAS_FRITAS) { }
 
         public override string ToString()
         {
-            return $"Guarnicion de tipo { this.tipo}";
+            return $"Guarnicion de tipo { this.tipo.ToString()}";
         }
 
         protected override string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine(this.ToString());
             sb.AppendLine(base.MostrarDatos());
-            sb.AppendLine($"Guarnición: {this.tipo.ToString()}");
             return sb.ToString();
         }
 
@@ -49,6 +52,7 @@ namespace Entidades
                     }
 
                 }
+                this.ingredientes.Add(ingrediente);
                 return $"Se agrego {ingrediente.ToString()} a su guarnicion";
             }
             return $"No se pudo agregar {ingrediente.ToString()} a su guarnición";
@@ -58,7 +62,7 @@ namespace Entidades
             double precio = (int)tipo;
             foreach (EIngredientes i in ingredientes)
             {
-                double porcentajeAgregado = 1 + ((int)i / 100);
+                double porcentajeAgregado = 1 + ((double)i / 100);
                 precio *= porcentajeAgregado;
             }
             return precio;

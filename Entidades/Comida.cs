@@ -11,8 +11,8 @@ namespace Entidades
         protected string nombre;
 
         public double Costo { get { return CalcularCosto(); } }
-        public string Descripcion { get { return  nombre; } }
-        public string Nombre { get { return MostrarDatos(); } }
+        public string Descripcion { get { return MostrarDatos(); } }
+        public string Nombre { get { return nombre; } }
 
         protected abstract string AgregarIngrediente(EIngredientes ingrediente);
         protected abstract double CalcularCosto();
@@ -29,19 +29,19 @@ namespace Entidades
         protected virtual string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Hamburguesa: {Nombre}");
-            sb.AppendLine($"Precio: {Costo}");
+            sb.AppendLine($"{Nombre}");
             if(ingredientes.Count > 0)
             {
-                foreach(var item in ingredientes)
+                foreach(EIngredientes item in ingredientes)
                 {
-                    sb.AppendLine(item.ToString());
+                    sb.AppendLine($"{item.ToString()}");
                 }
             }
             else
             {
                 sb.AppendLine("Sin ingredientes");
             }
+            sb.AppendLine($"Precio: ${Costo}");
             return sb.ToString();
         }
 

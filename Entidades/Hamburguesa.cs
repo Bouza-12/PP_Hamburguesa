@@ -24,7 +24,7 @@ namespace Entidades
 
         protected override string AgregarIngrediente(EIngredientes ingrediente)
         {
-            if(this == ingrediente)
+            if((Comida)this == ingrediente)
             {
                 return $"No se pudo agregar {ingrediente} a su hamburguesa";
             }
@@ -39,11 +39,11 @@ namespace Entidades
         {
             if (esDoble)
             {
-                return "Hamburguesa Doble";
+                return "Hamburguesa - Doble";
             }
             else
             {
-                return "Hamburgesa Simple";
+                return "Hamburguesa - Simple";
             }
         }
         protected override string MostrarDatos()
@@ -61,7 +61,7 @@ namespace Entidades
             if (esDoble) { precio += 500 ; }
             foreach(EIngredientes i in ingredientes)
             {
-                double porcentajeAgregado = 1 + ((int)i / 100) ;
+                double porcentajeAgregado = 1 + ((double)i / 100) ;
                 precio *= porcentajeAgregado;
             }
             return precio;
